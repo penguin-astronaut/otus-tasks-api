@@ -22,6 +22,7 @@ module.exports = {
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "no-param-reassign": "off",
+    "@typescript-eslint/no-var-requires": "off",
   },
   plugins: ["@typescript-eslint"],
 };
