@@ -7,6 +7,6 @@
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "lib": ["DOM", "ES2020"]
+    "lib": ["ES2020"]
   }
 }
