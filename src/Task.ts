@@ -5,7 +5,7 @@ export class Task {
 
   private _date: string;
 
-  private _status: Status;
+  private _status: string;
 
   private _tags: string[];
 
@@ -45,11 +45,11 @@ export class Task {
     this._date = date.toString();
   }
 
-  public get status(): Status {
+  public get status(): string {
     return this._status;
   }
 
-  public set status(value: Status) {
+  public set status(value: string) {
     this._status = value;
   }
 
