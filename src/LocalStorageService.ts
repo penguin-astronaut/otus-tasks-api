@@ -1,4 +1,4 @@
-import { ICalendarService } from "./ICalendarService";
+import { filterObj, ICalendarService } from "./ICalendarService";
 import { Task } from "./Task";
 
 export class LocalStoarageService implements ICalendarService {
@@ -53,8 +53,34 @@ export class LocalStoarageService implements ICalendarService {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
-  async filter(fields: Partial<Task>): Promise<Task[]> {
+  async filter(fields: filterObj): Promise<Task[]> {
     const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
-    return tasks.map((item) => new Task(item));
+    const { dateEnd, dateStart, text, status, tags } = fields;
+    const filtered: Task[] = [];
+
+    tasks.forEach((item): void => {
+      if (dateEnd && new Date(item.date).getTime() >= dateEnd.getTime()) {
+        return;
+      }
+      if (dateStart && new Date(item.date).getTime() >= dateEnd.getTime()) {
+        return;
+      }
+      if (text && !item.desc.toLowerCase().includes(text.toLowerCase())) {
+        return;
+      }
+      if (text && !item.desc.toLowerCase().includes(text.toLowerCase())) {
+        return;
+      }
+      if (status && item.status.toLowerCase() !== status) {
+        return;
+      }
+      if (tags && !item.tags.some((tag) => tags.includes(tag))) {
+        return;
+      }
+
+      filtered.push(new Task(item));
+    });
+
+    return filtered;
   }
 }
