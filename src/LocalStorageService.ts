@@ -2,7 +2,7 @@ import { filterObj, ICalendarService } from "./ICalendarService";
 import { Task } from "./Task";
 
 export class LocalStoarageService implements ICalendarService {
-  сonstructor(): void {
+  constructor() {
     if (localStorage.getItem("tasks") === null) {
       localStorage.setItem("tasks", "[]");
     }
