@@ -9,12 +9,12 @@ export class LocalStoarageService implements ICalendarService {
   }
 
   async get(): Promise<Task[]> {
-    const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
     return tasks.map((item) => new Task(item));
   }
 
   async getById(id: number): Promise<Task | false> {
-    const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
     const task = tasks.find((item) => item.id === id);
     if (!task) {
       return false;
@@ -35,7 +35,7 @@ export class LocalStoarageService implements ICalendarService {
   }
 
   async delete(id: number): Promise<boolean> {
-    const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
     const taskIndex = tasks.findIndex((item) => item.id === id);
     if (!taskIndex) {
       return false;
@@ -45,7 +45,7 @@ export class LocalStoarageService implements ICalendarService {
     return true;
   }
 
-  async insert(payload: Partial<Task>): Promise<void> {
+  async insert(payload: Task): Promise<void> {
     const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
     const lastId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].id : 0;
     payload.id = lastId + 1;
@@ -54,7 +54,7 @@ export class LocalStoarageService implements ICalendarService {
   }
 
   async filter(fields: filterObj): Promise<Task[]> {
-    const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
     const { dateEnd, dateStart, text, status, tags } = fields;
     const filtered: Task[] = [];
 
