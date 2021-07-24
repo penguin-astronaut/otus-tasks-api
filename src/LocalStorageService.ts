@@ -62,7 +62,7 @@ export class LocalStoarageService implements ICalendarService {
       if (dateEnd && new Date(item.date).getTime() >= dateEnd.getTime()) {
         return;
       }
-      if (dateStart && new Date(item.date).getTime() >= dateEnd.getTime()) {
+      if (dateStart && new Date(item.date).getTime() <= dateStart.getTime()) {
         return;
       }
       if (text && !item.desc.toLowerCase().includes(text.toLowerCase())) {
