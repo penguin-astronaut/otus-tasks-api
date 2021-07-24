@@ -47,7 +47,7 @@ export class LocalStoarageService extends AbstractCalendarService {
   }
 
   async insert(payload: Task): Promise<void> {
-    const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
     const lastId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].id : 0;
     payload.id = lastId + 1;
     tasks.push(new Task(payload));
