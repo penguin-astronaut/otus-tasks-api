@@ -1,8 +1,9 @@
-import { filterObj, ICalendarService } from "./ICalendarService";
+import { filterObj, AbstractCalendarService } from "./AbstractCalendarService";
 import { Task } from "./Task";
 
-export class LocalStoarageService implements ICalendarService {
+export class LocalStoarageService extends AbstractCalendarService {
   constructor() {
+    super();
     if (localStorage.getItem("tasks") === null) {
       localStorage.setItem("tasks", "[]");
     }
@@ -55,32 +56,7 @@ export class LocalStoarageService implements ICalendarService {
 
   async filter(fields: filterObj): Promise<Task[]> {
     const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
-    const { dateEnd, dateStart, text, status, tags } = fields;
-    const filtered: Task[] = [];
 
-    tasks.forEach((item): void => {
-      if (dateEnd && new Date(item.date).getTime() >= dateEnd.getTime()) {
-        return;
-      }
-      if (dateStart && new Date(item.date).getTime() <= dateStart.getTime()) {
-        return;
-      }
-      if (text && !item.desc.toLowerCase().includes(text.toLowerCase())) {
-        return;
-      }
-      if (text && !item.desc.toLowerCase().includes(text.toLowerCase())) {
-        return;
-      }
-      if (status && item.status.toLowerCase() !== status) {
-        return;
-      }
-      if (tags && !item.tags.some((tag) => tags.includes(tag))) {
-        return;
-      }
-
-      filtered.push(new Task(item));
-    });
-
-    return filtered;
+    return this.filterTasks(tasks, fields);
   }
 }

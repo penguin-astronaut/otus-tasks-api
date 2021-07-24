@@ -1,8 +1,8 @@
-import { ICalendarService } from "./ICalendarService";
+import { AbstractCalendarService } from "./AbstractCalendarService";
 import { LocalStoarageService } from "./LocalStorageService";
 
 export class Calendar {
-  storage: ICalendarService;
+  storage: AbstractCalendarService;
 
   constructor(storage?: string) {
     if (!storage) {
