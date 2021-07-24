@@ -93,16 +93,19 @@ describe("LocalStorage mock", () => {
       date: new Date("12.28.2021"),
       desc: "Some desc 2",
       status: "closed",
+      tags: ["name"],
     });
     localService.insert({
       date: new Date("11.27.2021"),
       desc: "Some desc 2",
       status: "closed",
+      tags: ["test", "fix"],
     });
     localService.insert({
       date: new Date("03.18.2020"),
       desc: "Some desc 1",
       status: "active",
+      tags: ["test"],
     });
     localService.insert({
       date: new Date("01.01.2010"),
@@ -146,5 +149,11 @@ describe("LocalStorage mock", () => {
     ).toBe(1);
     expect((await localService.filter({ text: "dEsc 1" })).length).toBe(2);
     expect((await localService.filter({ text: "no" })).length).toBe(0);
+
+    expect((await localService.filter({ tags: ["test"] })).length).toBe(2);
+    expect((await localService.filter({ tags: ["test", "name"] })).length).toBe(
+      3
+    );
+    expect((await localService.filter({ tags: ["nope"] })).length).toBe(0);
   });
 });
