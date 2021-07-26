@@ -8,8 +8,10 @@ export class Calendar {
   constructor(storage: string) {
     if (storage === "local") {
       this.storage = new LocalStoarageService();
-    } else {
+    } else if (storage === "json") {
       this.storage = new JsonDBService();
+    } else {
+      throw new Error("Unsupported storage");
     }
   }
 }
