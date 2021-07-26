@@ -1,5 +1,5 @@
 export class Task {
-  public id?: number;
+  public id: number;
 
   public desc: string;
 

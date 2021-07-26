@@ -1,6 +1,10 @@
 import { JsonDB } from "node-json-db";
 import { Config } from "node-json-db/dist/lib/JsonDBConfig";
-import { filterObj, AbstractCalendarService } from "./AbstractCalendarService";
+import {
+  filterObj,
+  AbstractCalendarService,
+  insertObj,
+} from "./AbstractCalendarService";
 import { Task } from "./Task";
 
 export class JsonDBService extends AbstractCalendarService {
@@ -50,10 +54,10 @@ export class JsonDBService extends AbstractCalendarService {
     return true;
   }
 
-  async insert(payload: Task): Promise<void> {
+  async insert(payload: insertObj): Promise<void> {
     const index = this.db.getData("/db/increment") + 1;
-    payload.id = index;
-    this.db.push("/db/tasks[]", new Task(payload));
+    const id = index;
+    this.db.push("/db/tasks[]", new Task({ ...payload, id }));
     this.db.push("/db/increment", index);
   }
 

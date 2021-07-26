@@ -8,6 +8,13 @@ export interface filterObj {
   tags?: string[];
 }
 
+export interface insertObj {
+  desc: string;
+  date: Date;
+  status: string;
+  tags?: string[];
+}
+
 export abstract class AbstractCalendarService {
   abstract get(): Promise<Task[]>;
 
@@ -17,7 +24,7 @@ export abstract class AbstractCalendarService {
 
   abstract delete(id: number): Promise<boolean>;
 
-  abstract insert(payload: Task): Promise<void>;
+  abstract insert(payload: insertObj): Promise<void>;
 
   abstract filter(fields: filterObj): Promise<Task[]>;
 

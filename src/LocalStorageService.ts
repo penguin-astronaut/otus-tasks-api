@@ -1,4 +1,8 @@
-import { filterObj, AbstractCalendarService } from "./AbstractCalendarService";
+import {
+  filterObj,
+  AbstractCalendarService,
+  insertObj,
+} from "./AbstractCalendarService";
 import { Task } from "./Task";
 
 export class LocalStoarageService extends AbstractCalendarService {
@@ -46,11 +50,11 @@ export class LocalStoarageService extends AbstractCalendarService {
     return true;
   }
 
-  async insert(payload: Task): Promise<void> {
+  async insert(payload: insertObj): Promise<void> {
     const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
     const lastId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].id : 0;
-    payload.id = lastId + 1;
-    tasks.push(new Task(payload));
+    const id = lastId + 1;
+    tasks.push(new Task({ ...payload, id }));
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
