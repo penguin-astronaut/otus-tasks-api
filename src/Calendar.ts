@@ -5,7 +5,7 @@ import { LocalStoarageService } from "./LocalStorageService";
 export class Calendar {
   public storage: AbstractCalendarService;
 
-  constructor(storage: "local" | "json") {
+  constructor(storage: string) {
     if (storage === "local") {
       this.storage = new LocalStoarageService();
     } else {
