@@ -1,6 +1,6 @@
 {
   "name": "@penguin_astronaut/task-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/",
@@ -11,6 +11,14 @@
     "build": "tsc",
     "prepare": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penguin-astronaut/otus-tasks-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/penguin-astronaut/otus-tasks-api/issues"
+  },
+  "homepage": "https://github.com/penguin-astronaut/otus-tasks-api#readme",
   "keywords": [],
   "author": "",
   "license": "ISC",
