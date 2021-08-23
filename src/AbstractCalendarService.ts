@@ -48,7 +48,7 @@ export abstract class AbstractCalendarService {
       if (status && item.status.toLowerCase() !== status) {
         return;
       }
-      if (tags && !item.tags.some((tag) => tags.includes(tag))) {
+      if (tags && !item.tags?.some((tag) => tags.includes(tag))) {
         return;
       }
 

@@ -14,12 +14,12 @@ export class LocalStoarageService extends AbstractCalendarService {
   }
 
   async get(): Promise<Task[]> {
-    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "");
     return tasks.map((item) => new Task(item));
   }
 
   async getById(id: number): Promise<Task | false> {
-    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "");
     const task = tasks.find((item) => item.id === id);
     if (!task) {
       return false;
@@ -29,7 +29,9 @@ export class LocalStoarageService extends AbstractCalendarService {
   }
 
   async update(id: number, payload: Partial<Task>): Promise<boolean> {
-    const tasks: Partial<Task>[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Partial<Task>[] = JSON.parse(
+      localStorage.getItem("tasks") ?? ""
+    );
     const taskIndex = tasks.findIndex((item) => item.id === id);
     if (!taskIndex) {
       return false;
@@ -40,7 +42,7 @@ export class LocalStoarageService extends AbstractCalendarService {
   }
 
   async delete(id: number): Promise<boolean> {
-    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "");
     const taskIndex = tasks.findIndex((item) => item.id === id);
     if (!taskIndex) {
       return false;
@@ -51,7 +53,7 @@ export class LocalStoarageService extends AbstractCalendarService {
   }
 
   async insert(payload: insertObj): Promise<void> {
-    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "");
     const lastId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].id : 0;
     const id = lastId + 1;
     tasks.push(new Task({ ...payload, id }));
@@ -59,7 +61,7 @@ export class LocalStoarageService extends AbstractCalendarService {
   }
 
   async filter(fields: filterObj): Promise<Task[]> {
-    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks"));
+    const tasks: Task[] = JSON.parse(localStorage.getItem("tasks") ?? "");
 
     return this.filterTasks(tasks, fields);
   }
