@@ -3,3 +3,4 @@ dist
 .eslintcache
 coverage
 myDataBase.json
+lib

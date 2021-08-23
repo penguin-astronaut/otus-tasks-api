@@ -2,7 +2,7 @@ import { AbstractCalendarService } from "./AbstractCalendarService";
 import { JsonDBService } from "./JsonDBService";
 import { LocalStoarageService } from "./LocalStorageService";
 
-export class Calendar {
+export default class Calendar {
   public storage: AbstractCalendarService;
 
   constructor(storage: string) {

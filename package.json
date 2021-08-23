@@ -2,10 +2,13 @@
   "name": "otus-calendar-api",
   "version": "1.0.0",
   "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/",
   "scripts": {
     "test": "jest --coverage",
     "lint": "prettier --check . && eslint --ext .js,.ts",
     "lint:fix": "prettier --write . && eslint . --ext .js,.ts --fix",
+    "build": "tsc",
     "prepare": "husky install"
   },
   "keywords": [],
