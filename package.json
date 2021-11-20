@@ -1,0 +1,48 @@
+{
+  "name": "@penguin_astronaut/task-api",
+  "version": "1.0.1",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "prettier --check . && eslint --ext .js,.ts",
+    "lint:fix": "prettier --write . && eslint . --ext .js,.ts --fix",
+    "build": "tsc",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penguin-astronaut/otus-tasks-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/penguin-astronaut/otus-tasks-api/issues"
+  },
+  "homepage": "https://github.com/penguin-astronaut/otus-tasks-api#readme",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.5",
+    "webpack-cli": "^4.7.2"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix --ext .ts,.js",
+    "*.{js,ts,css,md,yml,html,json}": "prettier --write"
+  },
+  "dependencies": {
+    "node-json-db": "^1.3.0"
+  }
+}
